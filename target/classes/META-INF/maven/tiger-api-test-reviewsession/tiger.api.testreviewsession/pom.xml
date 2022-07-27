@@ -1,0 +1,25 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>tiger-api-test-reviewsession</groupId>
+  <artifactId>tiger.api.testreviewsession</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>tiger.api.testreviewsession</name>
+  <dependencies>
+
+		<!-- This dependency is for Karate framework -->
+
+		<dependency>
+    <groupId>com.intuit.karate</groupId>
+    <artifactId>karate-junit5</artifactId>
+    <version>1.2.0</version>
+    <scope>test</scope>
+</dependency>
+
+		<!-- Faker Java is a library to for FAKE data -->
+		<dependency>
+    <groupId>com.github.javafaker</groupId>
+    <artifactId>javafaker</artifactId>
+    <version>1.0.2</version>
+</dependency>
+	</dependencies>
+</project>
