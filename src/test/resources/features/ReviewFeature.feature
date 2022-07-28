@@ -31,7 +31,7 @@ Scenario: Create New Account using Data Generator and adding address and car
 	"""
 	And header Authorization = "Bearer " + generatedToken
   When method post
-  Then status 201
+  Then status 500
   * def generatedId = response.id
   And print generatedId
   And print response
@@ -55,7 +55,7 @@ Scenario: Create New Account using Data Generator and adding address and car
 	"""
 	And header Authorization = "Bearer " + generatedToken
   When method post
-  Then status 201
+  Then status 500
   * def generatedId = response.id
   And print generatedId
   And print response
