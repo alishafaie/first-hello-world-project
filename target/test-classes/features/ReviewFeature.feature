@@ -27,6 +27,7 @@ Scenario: Create New Account using Data Generator and adding address and car
 	"maritalStatus": "MARRIED", 
 	"employmentStatus": "EMPLOYED", 
 	"dateOfBirth": "#(dob)"
+	
 	}
 	"""
 	And header Authorization = "Bearer " + generatedToken
@@ -36,13 +37,15 @@ Scenario: Create New Account using Data Generator and adding address and car
   And print generatedId
   And print response
   Then assert response.email == email
-  
   * def addressLine1 = generator.getAddressLine1()
 	* def city = generator.getCity()
 	* def state = generator.getState()											
 	* def postalCode = generator.getPostalCode()
 	* def countryCode = generator.getCountryCode()
-	Given path "/api/accounts/add-account-address" 	
+		
+	Given path "/api/accounts/add-account-address" 
+	And header Authorization = "Bearer " + generatedToken
+  And param primaryPersonId = generatedId	
 	And request
 	"""
 	{
@@ -51,29 +54,25 @@ Scenario: Create New Account using Data Generator and adding address and car
   "state": "#(state)",
   "postalCode": "#(postalCode)",
   "countryCode": "1",
+  "current": true
   }
 	"""
-	And header Authorization = "Bearer " + generatedToken
   When method post
   Then status 201
-  * def generatedId = response.id
-  And print generatedId
   And print response
-  
- 
- 
+  * def generator = Java.type('tiger.api.testreviewsession.ReviewDataGenerator')
   Given path "/api/accounts/add-account-car"
+  And header Authorization = "Bearer " + generatedToken
+  And param primaryPersonId = generatedId
   And request
   """
   {
-  "id": 0,
   "make": "Porsche",
  	"model": "911",
  	"year": "1991",
  	"licensePlate": "Brrrr"
 	}  
   """
-  And header Authorization = "Bearer " + generatedToken
   When method post
   Then status 201
   And print response
